@@ -41,8 +41,8 @@ public class TareaService implements ITareaService {
         EstudianteUAM estudiante = estudianteRepository.findById(estudianteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Estudiante no encontrado"));
 
-        // Obtener la lista de tareas del estudiante
-        List<Tarea> tareas = tareaRepository.findByEstudiante(estudiante); // Asegúrate de tener este método en TareaRepository
+        // Obtiene la lista de tareas del estudiante según su id
+        List<Tarea> tareas = tareaRepository.findByEstudiante(estudiante);
 
         return tareas.stream().map(tarea -> {
             TareaDTO tareaDTO = new TareaDTO();
