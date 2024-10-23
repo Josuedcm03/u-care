@@ -20,13 +20,13 @@ public class AuthService implements IAuthService {
             throw new ResourceNotFoundException("El email ya está registrado");
         }
 
-        // Crear nuevo estudiante con los datos recibidos
+        // Crea un nuevo estudiante con los datos recibidos
         EstudianteUAM estudiante = new EstudianteUAM();
         estudiante.setEmail(registroDTO.getEmail());
-        estudiante.setPassword(registroDTO.getPassword()); // Ahora se almacena la contraseña sin encriptar (solo para pruebas)
+        estudiante.setPassword(registroDTO.getPassword()); // se almacena la contraseña sin encriptar (aniadir encriptado)
         estudiante.setNombre(registroDTO.getNombre());
 
-        // Guardar estudiante en la base de datos
+        // se guarda el estudiante en la bd
         estudianteRepository.save(estudiante);
 
         return "Registro exitoso";
@@ -34,11 +34,11 @@ public class AuthService implements IAuthService {
 
     @Override
     public String login(LoginDTO loginDTO) {
-        // Buscar estudiante por email
+        // Busca el estudiante por email
         EstudianteUAM estudiante = estudianteRepository.findByEmail(loginDTO.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("El usuario no existe"));
 
-        // Comparar la contraseña en texto plano (solo para pruebas)
+        // Compara la contraseña (cambiar cuando se aniada la encriptación)
         if (!loginDTO.getPassword().equals(estudiante.getPassword())) {
             throw new ResourceNotFoundException("Contraseña incorrecta");
         }
