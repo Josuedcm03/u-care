@@ -20,7 +20,7 @@ public class TareaController {
         return ResponseEntity.ok(tareas);
     }
 
-    @PostMapping("/crear/{estudianteId}")  //
+    @PostMapping("/crear/{estudianteId}")
     public ResponseEntity<String> crearTarea(@PathVariable Long estudianteId, @RequestBody TareaDTO tareaDTO) {
         String response = tareaService.crearTarea(estudianteId, tareaDTO); // Pasa el estudianteId al servicio
         return ResponseEntity.ok(response);
